@@ -28,7 +28,7 @@ namespace EMarket.Infrastructure.Services
             }
         }
 
-        public IReadOnlyCollection<BasketItem> BasketItems => throw new NotImplementedException();
+        public IReadOnlyCollection<BasketItem> BasketItems => _basket.Items.AsReadOnly();
         public void AddItemToBasket(int productId, string productName, decimal unitPrice, string imagePath, int quantity = 1)
         {
             _basket.AddItem(productId, productName, unitPrice, imagePath, quantity);

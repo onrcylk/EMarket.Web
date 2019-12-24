@@ -67,6 +67,7 @@ namespace EMarket.Web
 
             services.AddHttpContextAccessor();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IBasketViewModelService, BasketViewModelService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

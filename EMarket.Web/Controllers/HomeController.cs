@@ -24,9 +24,9 @@ namespace EMarket.Web.Controllers
 
         public IActionResult Privacy([FromServices]IBasketService basketService)
         {
-            basketService.AddItemToBasket(1,"Kola",3.5m,"",3);
+            basketService.AddItemToBasket(1,"Kola",3.5m,"",500);
             ViewBag.items = basketService.BasketItems;
-           
+            string value = HttpContext.Session.GetString("basket");
             return View();
         }
 
