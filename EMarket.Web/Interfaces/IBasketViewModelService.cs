@@ -12,6 +12,7 @@ namespace EMarket.Web.Interfaces
     {
 
         void AddToBasket(int product, int quantity = 1);
+        void RemoveFromBasket(int product);
         IReadOnlyCollection<BasketItem> GetBasketItems();
 
         int TotalItems();

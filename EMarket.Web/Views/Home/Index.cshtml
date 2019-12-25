@@ -287,7 +287,7 @@
                 </div>
 
                 <vc:pagination pagination-info="Model.PaginationInfo"></vc:pagination>
-                
+
             </div>
         </div>
     </div>
@@ -470,25 +470,3 @@
         </div>
     </div>
 </div>
-@section scripts {
-<script>
-    $("[data-add-to-basket-id]").click(function () {
-        var id = $(this).data("add-to-basket-id");
-
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("AddToBasket","Basket")",
-            data: {productId:id},
-            success: function (data) {
-                console.log(data);
-
-            }
-        });
-
-
-    });
-
-
-</script>
-
-}

@@ -122,7 +122,7 @@
                             </ul>
                         </nav>
                     </div>
-                   @*@await  Component.InvokeAsync("HeaderCart")*@
+                    @*@await  Component.InvokeAsync("HeaderCart")*@
                     <vc:header-cart></vc:header-cart>
                 </div>
                 <div class="row">
@@ -327,6 +327,54 @@
     <script src="~/assets/js/plugins.js"></script>
     <script src="~/assets/js/main.js"></script>
 
-    @await  RenderSectionAsync("scripts",false)
+    <script>
+    $("[data-add-to-basket-id]").click(function (e) {
+        e.preventDefault();
+
+
+        var id = $(this).data("add-to-basket-id");
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddToBasket","Basket")",
+            data: {productId:id},
+            success: function (data) {
+                console.log(data);
+                $(".header-cart").replaceWith(data.headerBasketHtml);
+
+            }
+        });
+
+
+    });
+
+    $("body").on("click", "[data-remove-from-basket-id]", function (e) {
+        e.preventDefault();
+
+        var id = $(this).data("remove-from-basket-id");
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("RemoveFromBasket","Basket")",
+            data: { productId:id },
+            success: function (data) {
+
+                var html = $.parseHTML(data.headerBasketHtml);
+                var cartDropdown = $(html).find(".cart-dropdown");
+                $(".cart-dropdown").html(cartDropdown.html());
+
+                var cartItemCount = $(html).find(".cart-item-count");
+                $(".cart-item-count").html(cartItemCount.html());
+
+            }
+        });
+
+    });
+
+
+    </script>
+
+
+
+    @await RenderSectionAsync("scripts", false)
 </body>
 </html>

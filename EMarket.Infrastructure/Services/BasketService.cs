@@ -48,7 +48,8 @@ namespace EMarket.Infrastructure.Services
 
         public void RemoveItemFromBasket(int productId)
         {
-            throw new NotImplementedException();
+            _basket.RemoveItem(productId);
+            SaveBasketToSession();
         }
 
         private void SaveBasketToSession()
